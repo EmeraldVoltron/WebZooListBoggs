@@ -2,12 +2,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script type = "text/javascript">
+	function checkForm(form){
+		if(form.species.value == ""){
+			alert("Please provide the species!" );
+			document.myForm.species.focus();
+			return false;
+		}
+		if(form.name.value == ""){
+			alert("Please provide the animal's name");
+			document.myForm.name.focus();
+			return false;
+		}
+		return( true );
+	}
+	</script>
 <title>Zoo Animals</title>
 </head>
 <body>
 <h1> Zoo Animals </h1>
 <h2> Add the zoo animals species, and their name below: </h2>
-<form action="addAnimalServlet" method="post">
+<form action="addAnimalServlet" onsubmit="return checkForm(this);" method="post" >
 Species: <input type="text" name="species">
 Animal's name: <input type="text" name="name">
 <input type="submit" value="Add Animal">

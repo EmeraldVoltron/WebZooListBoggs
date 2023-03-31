@@ -6,16 +6,26 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script type = "text/javascript">
+	function checkForm(form){
+		if(document.getElementById('myRadio').checked){
+			return true;
+		} else {
+			alert("Error: No list was selected!");
+			return false;
+		}
+	}
+</script>
 <title>Animal Lists</title>
 </head>
 <body>
 <h2>All the lists: </h2>
 <h3>Choose one to either delete, edit or add a new list.</h3>
-<form method = "post" action="listNavigationServlet">
+<form method = "post" action="listNavigationServlet" onsubmit="return checkForm(this);">
 <table>
 <c:forEach items="${requestScope.allLists}" var="currentList">
 <tr>
-	<td><input type="radio" name="id" value="${currentList.id}"></td>
+	<td><input type="radio" name="id" id="myRadio" value="${currentList.id}"></td>
 	<td><h2>${currentList.listName}</h2></td>
 </tr>
 <tr><td colspan="3">Last Shift Date: ${currentList.lastShift}</td></tr>
